@@ -1,13 +1,13 @@
 import { localStorage } from './local-storage.js';
 import { getLocalStorageItem } from './local-storage.js';
 let allBtns = document.querySelectorAll('.js_add-to-cart');
-export const cartSpan = document.querySelector('.js_cart__span');
+export let cartSpan = document.querySelectorAll('.js_cart__span');
 export const successMessageSpan = document.querySelector('.js_success-product-name');
 export const successMessage = document.querySelector('.js_success-message');
 const errorButton = document.querySelector('.js_error__btn');
 const errorOverlay = document.querySelector('.js_error__overlay');
 
-
+cartSpan = [...cartSpan];
 allBtns = [...allBtns];
 
 allBtns.forEach(btn => {
@@ -54,7 +54,13 @@ function addToCart(e) {
 
     // ADD TO LOCAL STORAGE
     if (okay){
-        cartSpan.textContent = Number(cartSpan.textContent) + 1;
+        if(cartSpan.length !== 0) {
+            cartSpan.forEach(span => {
+                span.textContent = Number(span.textContent) + 1;
+            })
+            
+        }
+        
         showSuccessMessage(successMessage, successMessageSpan, name);
         localStorage(productId);
     }
