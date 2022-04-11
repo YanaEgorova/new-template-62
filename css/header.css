@@ -1,6 +1,9 @@
 .header__wrapper {
     position: relative;
 }
+body.open-menu {
+    overflow: hidden;
+}
 .header {
     padding: 2rem 0;
     display: flex;
